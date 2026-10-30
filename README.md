@@ -6,7 +6,8 @@
 
 This repository runs [SHRINCS](https://github.com/SHRINCS/shrincs-bip/blob/main/SHRINCS.md) key generation and signing distributed across four parties, one of which may be malicious.
 As MPC protocol we use [Fantastic Four](https://eprint.iacr.org/2020/1330).
-[`OVERVIEW.md`](OVERVIEW.md) describes how the parties compute key generation and signing.
+See 
+[`OVERVIEW`](OVERVIEW.md) for details on key generation and signing.
 
 > [!WARNING]
 > **Prototype.** This is research code and it has **not** been security-audited.  
