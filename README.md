@@ -70,7 +70,7 @@ The key allows 256 stateful signatures, and each node holds 20.1 MB of key share
 Stateless signing does not depend on the stateful tree, so we measured it with the balanced key only.
 Without the cache, the rounds depend on the highest chain index of the signature.
 On disk a node keeps only its journal of used leaves, 165 bytes per signature.
-See [`runs/2026-10-30T171505Z`](runs/2026-10-30T171505Z) and [`runs/2026-10-30T175017Z`](runs/2026-10-30T175017Z) for detailed measurement results.
+We measured each key in its own run, see [`runs/2026-10-30T171505Z`](runs/2026-10-30T171505Z) for the balanced key and [`runs/2026-10-30T175017Z`](runs/2026-10-30T175017Z) for the unbalanced key.
 
 ## Reproduce our results
 To rerun our experiment, we use a cluster file which lists the four nodes, as in [`cluster_local.conf`](cluster_local.conf) and [`cluster_wan.conf`](cluster_wan.conf).
