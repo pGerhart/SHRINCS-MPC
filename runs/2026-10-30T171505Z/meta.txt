@@ -1,0 +1,15 @@
+date 2026-10-30T171505Z
+code 176437c3832693ee
+client rustc 1.89.0 (29483883e 2025-08-04)
+binary shrincs-node 1079728 bytes
+args keys=[balanced:11] n=10 m=1
+node 0 3.72.40.140:8080 version 0.1.0, 8 cpus, Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+node 1 108.129.200.129:8080 version 0.1.0, 8 cpus, Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+node 2 3.10.144.93:8080 version 0.1.0, 8 cpus, Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+node 3 13.36.239.246:8080 version 0.1.0, 8 cpus, Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+TCP connect ms, row to column
+node0 0.186 19.852 11.909 8.009
+node1 19.991 0.283 9.082 16.556
+node2 11.902 9.364 0.156 8.033
+node3 7.788 16.348 8.343 0.150
+balanced:11 pk 3ed68207aaf58f82bb8476e9540c7edebf6ef50a55a014c6da83c5f4105acd98b2312616a9b0e833457fd17cdc49478e

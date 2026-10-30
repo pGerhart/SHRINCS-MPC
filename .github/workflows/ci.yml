@@ -1,0 +1,56 @@
+name: CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CARGO_TERM_COLOR: always
+jobs:
+  test:
+    name: fmt / clippy / test / doc (${{ matrix.rust }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        # 1.89.0 is the rust-version in Cargo.toml, so that leg is the MSRV check.
+        rust: ["1.89.0", "stable"]
+    env:
+      # Overrides rust-toolchain.toml, which would pin both legs to 1.89.0.
+      RUSTUP_TOOLCHAIN: ${{ matrix.rust }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ matrix.rust }}
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - if: matrix.rust == '1.89.0'
+        run: cargo fmt --all --check
+      # Allowed lints are intentional and kept for readability; everything else is denied.
+      - if: matrix.rust == '1.89.0'
+        run: >
+          cargo clippy --all-targets --locked --
+          -D warnings
+          -A clippy::needless_range_loop
+          -A clippy::type_complexity
+          -A clippy::too_many_arguments
+      - run: cargo test --locked --release
+      - run: cargo doc --no-deps --locked
+        env:
+          RUSTDOCFLAGS: -D warnings
+  audit:
+    name: cargo audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo install cargo-audit --locked
+      - run: cargo audit

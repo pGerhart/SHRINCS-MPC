@@ -1,0 +1,30 @@
+[workspace]
+resolver = "2"
+members = ["shrincs", "ff4", "node"]
+exclude = ["experiments"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.89"
+
+[workspace.dependencies]
+shrincs = { path = "shrincs" }
+ff4 = { path = "ff4" }
+node = { path = "node" }
+sha2 = "0.11"
+rand_core = "0.10"
+rand_chacha = "0.10"
+getrandom = "0.4"
+bytemuck = "1"
+socket2 = { version = "0.6", features = ["all"] }
+hex = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+
+[profile.test]
+opt-level = 2

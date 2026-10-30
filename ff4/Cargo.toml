@@ -1,0 +1,24 @@
+[package]
+name = "ff4"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "SHRINCS key generation and signing by Fantastic Four four-party MPC"
+
+[dependencies]
+shrincs.workspace = true
+sha2.workspace = true
+rand_core.workspace = true
+rand_chacha.workspace = true
+bytemuck.workspace = true
+
+zeroize = "1"
+
+[features]
+# Deviations of a malicious party, for the tests only.
+adversary = []
+
+[dev-dependencies]
+hex.workspace = true
+ff4 = { path = ".", features = ["adversary"] }

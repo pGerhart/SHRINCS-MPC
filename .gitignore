@@ -1,0 +1,8 @@
+/target
+**/target
+.DS_Store
+/scripts/__pycache__
+*.journal
+/experiments
+eval/optimisations.md
+findings.md
